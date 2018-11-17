@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "1a560510008269093255a79359e901c9",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2363,6 +2363,55 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "writingink/wink",
+            "version": "v0.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/writingink/wink.git",
+                "reference": "8ae48a9d3da6458bbb39760c502f884c81dcd625"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/writingink/wink/zipball/8ae48a9d3da6458bbb39760c502f884c81dcd625",
+                "reference": "8ae48a9d3da6458bbb39760c502f884c81dcd625",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.7",
+                "php": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wink\\WinkServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wink\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "Wink Publishing Framework.",
+            "keywords": [
+                "blog",
+                "framework",
+                "laravel"
+            ],
+            "time": "2018-11-16T14:42:33+00:00"
         }
     ],
     "packages-dev": [
