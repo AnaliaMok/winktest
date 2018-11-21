@@ -29,10 +29,12 @@
     </style>
 </head>
 <body>
-    <main class="content">
-        @yield('content')
-    </main>
-
+    <div id="app">
+        <main class="content">
+            @yield('content')
+        </main>
+        <example-component></example-component>
+    </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
