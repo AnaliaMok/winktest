@@ -18,8 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Retrieve Pages: api/pages
-Route::get('/{slug}', 'PageController@page');
 Route::get('pages', 'PageController@index');
 
 // Retrieve Posts: api/posts
 Route::get('posts', 'PostController@index');
+
+// Retrieve Single Page: api/{page-slug}
+Route::get('/{slug}', 'PageController@page');
