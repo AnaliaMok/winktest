@@ -17,7 +17,12 @@ class PageController extends Controller
 
     public function page($slug)
     {
-        $page = WinkPage::where('slug', $slug)->get();
+        $page = WinkPage::where('slug', $slug)->first();
+
+        if($page === null)
+        {
+            abort(404);
+        }
 
         return WinkPageResource::make($page);
     }
