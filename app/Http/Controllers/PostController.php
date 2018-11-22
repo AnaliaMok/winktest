@@ -17,18 +17,11 @@ class PostController extends Controller
 
     public function category($category)
     {
-        // Category table id
-        $category_id = \Wink\WinkTag::where('slug', $category)
-            ->select('id')
-            ->get();
+        // Retrieve Wink Tag First
+        $tag = \Wink\WinkTag::where('slug', strtolower($category))->first();
 
-        // Retrieve only published posts and order by
-        $posts = WinkPost::with(['tags' => function ($query) use ($category) {
-                $query->where('slug', '=', strtolower($category));
-            }])
-            ->where('published', '=', true)
-            ->orderBy('publish_date', 'desc')
-            ->get();
+        // Get all published posts related to this tag
+        $posts = $tag->posts()->where('published', true)->orderBy('publish_date', 'desc')->get();
 
         return WinkPostResource::collection($posts);
     }
