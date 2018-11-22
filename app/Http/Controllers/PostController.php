@@ -25,4 +25,15 @@ class PostController extends Controller
 
         return WinkPostResource::collection($posts);
     }
+
+    public function show($slug){
+        $post = WinkPost::where('slug', $slug)->first();
+
+        if($post === null)
+        {
+            abort(404);
+        }
+
+        return WinkPostResource::make($post);
+    }
 }
