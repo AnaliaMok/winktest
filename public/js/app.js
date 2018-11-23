@@ -13468,22 +13468,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "blog" },
-    [
-      _c(
-        "section",
-        [
-          _c("blog-post-card", {
-            key: _vm.featuredPost.id,
-            staticClass: "blog__post blog__post--featured",
-            attrs: { post: _vm.featuredPost, "is-featured": true }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
+  return _c("div", { staticClass: "blog container" }, [
+    _c(
+      "section",
+      { staticClass: "row" },
+      [
+        _c("blog-post-card", {
+          key: _vm.featuredPost.id,
+          staticClass: "blog__post blog__post--featured col-sm-12",
+          attrs: { post: _vm.featuredPost, "is-featured": true }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "section",
+      {
+        staticClass: "row d-flex flex-row justify-content-flex-start flex-wrap"
+      },
       _vm._l(_vm.posts, function(post) {
         return _c("blog-post-card", {
           key: post.id,
@@ -13491,9 +13494,8 @@ var render = function() {
           attrs: { "is-featured": false, post: post }
         })
       })
-    ],
-    2
-  )
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13511,6 +13513,8 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -13634,11 +13638,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: {
     post: Object,
     isFeatured: false
-  },
-  mounted: function mounted() {
-    // console.log("Title: " + this.post.title);
-    // console.log(this.post);
-    // console.log(this.isFeatured);
   }
 });
 

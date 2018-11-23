@@ -10,11 +10,6 @@ export default {
   props: {
     post: Object,
     isFeatured: false
-  },
-  mounted(){
-    // console.log("Title: " + this.post.title);
-    // console.log(this.post);
-    // console.log(this.isFeatured);
   }
 }
 </script>

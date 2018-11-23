@@ -1,20 +1,22 @@
 <template>
-  <div class="blog">
-    <section>
+  <div class="blog container">
+    <section class="row">
       <blog-post-card
-        class="blog__post blog__post--featured"
+        class="blog__post blog__post--featured col-sm-12"
         :post="featuredPost"
         :is-featured="true"
         :key="featuredPost.id">
       </blog-post-card>
     </section>
-    <blog-post-card
-      class="blog__post"
-      v-for="post in posts"
-      :key="post.id"
-      :is-featured="false"
-      :post="post">
-    </blog-post-card>
+    <section class="row d-flex flex-row justify-content-flex-start flex-wrap">
+      <blog-post-card
+        class="blog__post"
+        v-for="post in posts"
+        :key="post.id"
+        :is-featured="false"
+        :post="post">
+      </blog-post-card>
+    </section>
   </div>
 </template>
 

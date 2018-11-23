@@ -10,7 +10,9 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = WinkPost::where('published', true)->get();
+        $posts = WinkPost::where('published', true)
+            ->orderBy('publish_date', 'desc')
+            ->get();
 
         return WinkPostResource::collection($posts);
     }
