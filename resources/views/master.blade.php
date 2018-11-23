@@ -33,7 +33,6 @@
         <main class="content">
             @yield('content')
         </main>
-        <example-component></example-component>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

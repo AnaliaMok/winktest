@@ -8,6 +8,16 @@ use App\Http\Resources\WinkPage as WinkPageResource;
 
 class PageController extends Controller
 {
+    /// Web Routes
+    // TODO: Will switch web routing using vue-route
+    public function showBlog()
+    {
+        return view('blog.index');
+    }
+
+
+    /// API Routes
+
     public function index()
     {
         $pages = WinkPage::get();
