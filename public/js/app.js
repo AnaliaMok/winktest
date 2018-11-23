@@ -995,7 +995,7 @@ window.Vue = __webpack_require__(31);
 
 Vue.component('example-component', __webpack_require__(34));
 Vue.component('blog-post-container', __webpack_require__(43));
-Vue.component('blog-post', __webpack_require__(46));
+Vue.component('blog-post-card', __webpack_require__(49));
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -13471,9 +13471,28 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "blog" },
-    _vm._l(_vm.posts, function(post) {
-      return _c("blog-post", { key: post.id })
-    })
+    [
+      _c(
+        "section",
+        [
+          _c("blog-post-card", {
+            key: _vm.featuredPost.id,
+            staticClass: "blog__post blog__post--featured",
+            attrs: { post: _vm.featuredPost, "is-featured": true }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.posts, function(post) {
+        return _c("blog-post-card", {
+          key: post.id,
+          staticClass: "blog__post",
+          attrs: { "is-featured": false, post: post }
+        })
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -13498,10 +13517,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      featuredPost: {},
       posts: []
     };
   },
@@ -13514,7 +13548,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var self = this;
       console.log("Getting posts");
       axios.get('/api/posts').then(function (response) {
-        self.posts = response.data.data;
+        var data = response.data.data;
+
+        // Pull of latests
+        if (data.length > 0) {
+          self.featuredPost = data[0];
+        }
+
+        // Grab Remaining Posts
+        if (data.length > 1) {
+          self.posts = data.slice(1);
+        }
       }).catch(function (error) {
         console.log(error);
       });
@@ -13523,15 +13567,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 46 */
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(35)
 /* script */
-var __vue_script__ = __webpack_require__(47)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(48)
+var __vue_template__ = __webpack_require__(51)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13548,7 +13595,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/BlogPost.vue"
+Component.options.__file = "resources/js/components/BlogPostCard.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -13557,9 +13604,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-bdf3a066", Component.options)
+    hotAPI.createRecord("data-v-791f647d", Component.options)
   } else {
-    hotAPI.reload("data-v-bdf3a066", Component.options)
+    hotAPI.reload("data-v-791f647d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -13570,7 +13617,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13579,27 +13626,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      post: Object
-    };
+  props: {
+    post: Object,
+    isFeatured: false
   },
   mounted: function mounted() {
-    console.log("Blog Post Has Mounted");
+    // console.log("Title: " + this.post.title);
+    // console.log(this.post);
+    // console.log(this.isFeatured);
   }
 });
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("strong", [_vm._v("Blog Post")])
+  return _c(
+    "p",
+    { staticStyle: { display: "block", border: "1px solid black" } },
+    [
+      _vm.isFeatured ? _c("span", [_vm._v("FEATURED")]) : _vm._e(),
+      _vm._v(" "),
+      _c("strong", [_vm._v(_vm._s(_vm.post.title))])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13607,7 +13666,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-bdf3a066", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-791f647d", module.exports)
   }
 }
 

@@ -37,4 +37,5 @@ class PostController extends Controller
 
         return WinkPostResource::make($post);
     }
+
 }

@@ -19,7 +19,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('blog-post-container', require('./components/BlogPostContainer.vue'));
-Vue.component('blog-post', require('./components/BlogPost.vue'));
+Vue.component('blog-post-card', require('./components/BlogPostCard.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 
