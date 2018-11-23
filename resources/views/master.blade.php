@@ -5,30 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>WinkTest | Blog</title>
+    <title>WinkTest | @yield('title')</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Hind%7CPoppins:700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            margin: 0;
-        }
-        main {
-            padding: 2rem;
-        }
-
-        img {
-            display: inline-block;
-            width: 100%;
-            height: auto;
-        }
-    </style>
 </head>
 <body>
+    @include('partials.nav')
     <div id="app">
         <main class="content">
             @yield('content')

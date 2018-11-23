@@ -3,13 +3,54 @@
     margin-bottom: 1rem;
     flex: 1 1 30%;
     max-width: calc(33.33% - 0.5rem);
+    background-color: $white;
+
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.16);
+    color: $dark-grey;
 
     &:nth-child(3n+2){
       margin: 0 1rem 1rem;
     }
 
+    strong:first-child {
+      font-family: $header-font;
+      color: $blue;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    h5 a{
+      color: $dark-grey;
+    }
+
+    &__col {
+      &--img{
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      &--content {
+        padding: 30px;
+      }
+    }
+
     &--featured {
       max-width: 100%;
+      flex-direction: row;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.16);
+
+      .blog__post__col {
+        &--img {
+          flex: 1 1 60%;
+        }
+        &--content {
+          flex: 1 1 40%;
+        }
+      }
     }
   }
 }

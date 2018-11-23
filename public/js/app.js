@@ -13475,7 +13475,7 @@ var render = function() {
       [
         _c("blog-post-card", {
           key: _vm.featuredPost.id,
-          staticClass: "blog__post blog__post--featured col-sm-12",
+          staticClass: "blog__post blog__post--featured",
           attrs: { post: _vm.featuredPost, "is-featured": true }
         })
       ],
@@ -13633,11 +13633,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     post: Object,
-    isFeatured: false
+    isFeatured: false,
+    featuredImageCaption: String
+  },
+  computed: {
+    imageCaption: function imageCaption() {
+      var post = this.post;
+
+      if (post.featured_image_caption && post.featured_image_caption.length > 0) {
+        return post.featured_image_caption;
+      } else {
+        return post.title;
+      }
+    },
+    excerpt: function excerpt() {
+      var excerpt = this.post.excerpt;
+      var body = this.post.body;
+
+      if (excerpt != undefined && excerpt.length > 0) {
+        // If excerpt exists, return it. Clamp within 250 characters
+        excerpt = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
+
+        if (excerpt.length >= 250) {
+          return excerpt.substring(0, 250) + "...";
+        }
+
+        return excerpt;
+      } else if (body != undefined) {
+        body = body.replace(/<\/?[^>]+(>|$)/g, "");
+
+        return body.substring(0, 250) + "...";
+      }
+    }
   }
 });
 
@@ -13649,15 +13686,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "p",
-    { staticStyle: { display: "block", border: "1px solid black" } },
-    [
-      _vm.isFeatured ? _c("span", [_vm._v("FEATURED")]) : _vm._e(),
+  return _c("div", [
+    _c("div", { staticClass: "blog__post__col blog__post__col--img" }, [
+      _c("img", {
+        attrs: { src: _vm.post.featured_image, alt: _vm.imageCaption }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "blog__post__col blog__post__col--content" }, [
+      _vm.isFeatured ? _c("strong", [_vm._v("FEATURED")]) : _vm._e(),
       _vm._v(" "),
-      _c("strong", [_vm._v(_vm._s(_vm.post.title))])
-    ]
-  )
+      _c("h5", [
+        _c("a", { attrs: { href: "/blog/" + _vm.post.slug } }, [
+          _vm._v(_vm._s(_vm.post.title))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("p", { domProps: { innerHTML: _vm._s(_vm.excerpt) } })
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

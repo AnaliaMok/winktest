@@ -2,7 +2,7 @@
   <div class="blog container">
     <section class="row">
       <blog-post-card
-        class="blog__post blog__post--featured col-sm-12"
+        class="blog__post blog__post--featured"
         :post="featuredPost"
         :is-featured="true"
         :key="featuredPost.id">

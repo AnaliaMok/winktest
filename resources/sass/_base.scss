@@ -1,0 +1,45 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: $default-font;
+  font-weight: normal;
+  color: $dark-grey;
+  background-color: $grey;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font;
+  font-weight: 700;
+}
+
+// Nav Content
+nav {
+  background-color: $black;
+
+  .container {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+  }
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      padding: 1.5rem 1rem;
+      font-family: $header-font;
+      font-size: 1.1rem;
+      color: $white;
+    }
+  }
+}
+
+// Main Content
+main {
+  margin-top: 5rem;
+}
