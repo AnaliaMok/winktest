@@ -10,8 +10,11 @@ class PostController extends Controller
 {
     public function index()
     {
+        // TODO: Fix eager loading of select columns
         $posts = WinkPost::where('published', true)
+            ->with(['author', 'tags'])
             ->orderBy('publish_date', 'desc')
+            ->limit(10) // TODO: Make dynamic for load more button
             ->get();
 
         return WinkPostResource::collection($posts);

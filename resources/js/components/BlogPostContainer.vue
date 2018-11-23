@@ -34,7 +34,7 @@ export default {
   methods: {
     fetchPost: function(){
       var self = this;
-      console.log("Getting posts");
+
       axios.get('/api/posts')
         .then(function(response){
           var data = response.data.data;

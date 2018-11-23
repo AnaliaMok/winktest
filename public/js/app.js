@@ -13550,7 +13550,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     fetchPost: function fetchPost() {
       var self = this;
-      console.log("Getting posts");
+
       axios.get('/api/posts').then(function (response) {
         var data = response.data.data;
 
@@ -13639,6 +13639,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -13646,6 +13652,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     isFeatured: false,
     featuredImageCaption: String
   },
+  mounted: function mounted() {
+    console.log(this.post);
+  },
+
   computed: {
     imageCaption: function imageCaption() {
       var post = this.post;
@@ -13674,6 +13684,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         return body.substring(0, 250) + "...";
       }
+    },
+    publishDate: function publishDate() {
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+      var date = new Date();
+
+      if (this.post.publish_date !== undefined) {
+        date = new Date(this.post.publish_date);
+      }
+
+      var month = parseInt(date.getMonth());
+      var day = date.getDate();
+      var year = date.getFullYear();
+
+      return months[month] + " " + day + ", " + year;
     }
   }
 });
@@ -13702,7 +13727,28 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("p", { domProps: { innerHTML: _vm._s(_vm.excerpt) } })
+      _c("p", { domProps: { innerHTML: _vm._s(_vm.excerpt) } }),
+      _vm._v(" "),
+      _vm.post.author
+        ? _c("p", { staticClass: "blog__post__author" }, [
+            _vm._v("By "),
+            _c("span", [_vm._v(_vm._s(_vm.post.author.name))])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(_vm._s(_vm.publishDate) + "\n      "),
+        _vm.post.tags !== undefined && _vm.post.tags.length > 0
+          ? _c("span", [
+              _vm._v("| \n        "),
+              _c(
+                "a",
+                { attrs: { href: "/blog/category/" + _vm.post.tags[0].name } },
+                [_vm._v(_vm._s(_vm.post.tags[0].name))]
+              )
+            ])
+          : _vm._e()
+      ])
     ])
   ])
 }
