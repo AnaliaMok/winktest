@@ -6,13 +6,18 @@
     <div class="blog__post__col blog__post__col--content">
       <strong v-if="isFeatured">FEATURED</strong>
       <h5><a :href="'/blog/' + post.slug">{{ post.title }}</a></h5>
-      <p v-html="excerpt"></p>
-      <p v-if="post.author" class="blog__post__author">By <span>{{ post.author.name }}</span></p>
-      <p>{{ publishDate }}
-        <span v-if="post.tags !== undefined && post.tags.length > 0">|&nbsp;
-          <a :href="'/blog/category/' + post.tags[0].name">{{ post.tags[0].name }}</a>
-        </span>
-      </p>
+      <p v-html="excerpt" class="blog__post__excerpt"></p>
+      <div class="blog__post__col__bottom">
+        <p v-if="post.author" class="blog__post__author">
+          By <span><a :href="'/blog/author/' + author">{{ post.author.name }}</a>
+          </span>
+        </p>
+        <p class="blog__post__date">{{ publishDate }}
+          <span v-if="post.tags !== undefined && post.tags.length > 0">|&nbsp;
+            <a :href="'/blog/category/' + post.tags[0].name">{{ post.tags[0].name }}</a>
+          </span>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -73,6 +78,12 @@ export default {
       let year = date.getFullYear();
 
       return `${months[month]} ${day}, ${year}`;
+    },
+    author: function(){
+      if(this.post.author){
+        return this.post.author.name.toLowerCase().replace(' ', '_')
+      }
+      return '';
     }
   }
 }

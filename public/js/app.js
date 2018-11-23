@@ -13645,6 +13645,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -13699,6 +13704,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var year = date.getFullYear();
 
       return months[month] + " " + day + ", " + year;
+    },
+    author: function author() {
+      if (this.post.author) {
+        return this.post.author.name.toLowerCase().replace(' ', '_');
+      }
+      return '';
     }
   }
 });
@@ -13727,27 +13738,38 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("p", { domProps: { innerHTML: _vm._s(_vm.excerpt) } }),
+      _c("p", {
+        staticClass: "blog__post__excerpt",
+        domProps: { innerHTML: _vm._s(_vm.excerpt) }
+      }),
       _vm._v(" "),
-      _vm.post.author
-        ? _c("p", { staticClass: "blog__post__author" }, [
-            _vm._v("By "),
-            _c("span", [_vm._v(_vm._s(_vm.post.author.name))])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(_vm._s(_vm.publishDate) + "\n      "),
-        _vm.post.tags !== undefined && _vm.post.tags.length > 0
-          ? _c("span", [
-              _vm._v("| \n        "),
-              _c(
-                "a",
-                { attrs: { href: "/blog/category/" + _vm.post.tags[0].name } },
-                [_vm._v(_vm._s(_vm.post.tags[0].name))]
-              )
+      _c("div", { staticClass: "blog__post__col__bottom" }, [
+        _vm.post.author
+          ? _c("p", { staticClass: "blog__post__author" }, [
+              _vm._v("\n        By "),
+              _c("span", [
+                _c("a", { attrs: { href: "/blog/author/" + _vm.author } }, [
+                  _vm._v(_vm._s(_vm.post.author.name))
+                ])
+              ])
             ])
-          : _vm._e()
+          : _vm._e(),
+        _vm._v(" "),
+        _c("p", { staticClass: "blog__post__date" }, [
+          _vm._v(_vm._s(_vm.publishDate) + "\n        "),
+          _vm.post.tags !== undefined && _vm.post.tags.length > 0
+            ? _c("span", [
+                _vm._v("| \n          "),
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "/blog/category/" + _vm.post.tags[0].name }
+                  },
+                  [_vm._v(_vm._s(_vm.post.tags[0].name))]
+                )
+              ])
+            : _vm._e()
+        ])
       ])
     ])
   ])
