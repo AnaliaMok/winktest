@@ -10631,6 +10631,10 @@ main {
           box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
 }
 
+.post__breadcrumb {
+  margin-bottom: 1.5rem;
+}
+
 .post__img-container {
   width: 100%;
 }

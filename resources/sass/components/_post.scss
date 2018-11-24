@@ -4,6 +4,10 @@
   background-color: $white;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
 
+  &__breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
   &__img-container {
     width: 100%;
 

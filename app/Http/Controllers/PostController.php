@@ -90,15 +90,35 @@ class PostController extends Controller
     public function showPost($slug)
     {
         $post = WinkPost::where('slug', $slug)
-            ->with('author')
+            ->with(['author', 'tags'])
             ->first();
+
+        // Published Date
+        $publish_date = new \Carbon\Carbon($post->publish_date);
+
+        // Create Breadcrumb
+        $breadcrumb = ['blog' => '/blog'];
+        if (count($post->tags) > 0) {
+            $breadcrumb['category'] = [
+                'name' => ucfirst($post->tags[0]->name),
+                'link' => '/blog/category/' . strtolower($post->tags[0]->name),
+            ];
+        }
+
+        $data = [
+            'breadcrumb'    => $breadcrumb,
+            'post'          => $post,
+            'publish_date'  => $publish_date->toFormattedDateString(),
+            'author_slug'   => strtolower(str_replace(' ', '-', $post->author->name)),
+            'image_caption' => strlen($post->featured_image_caption) > 0 ? $post->featured_image_caption : $post->title
+        ];
 
         if ($post === null)
         {
             abort(404);
         }
 
-        return view('blog.post', ['post' => $post]);
+        return view('blog.post', $data);
     }
 
 }
