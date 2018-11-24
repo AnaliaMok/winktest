@@ -10548,6 +10548,17 @@ main {
   -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.16);
           box-shadow: 0 6px 10px rgba(0, 0, 0, 0.16);
   color: #2D2D2D;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+
+.blog__post:hover {
+  position: relative;
+  z-index: 5;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .blog__post:nth-child(3n+2) {
@@ -10607,6 +10618,11 @@ main {
 
 .blog__post--featured h5 a {
   font-size: 1.5rem;
+}
+
+.blog__post--featured:hover {
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
 }
 
 .blog__post--featured .blog__post__col--img {
