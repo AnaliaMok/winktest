@@ -34,10 +34,15 @@ class PostController extends Controller
     public function category($category)
     {
         // Retrieve Wink Tag First
-        $tag = \Wink\WinkTag::where('slug', strtolower($category))->first();
+        $tag = \Wink\WinkTag::where('slug', strtolower($category))
+            ->first();
 
         // Get all published posts related to this tag
-        $posts = $tag->posts()->where('published', true)->orderBy('publish_date', 'desc')->get();
+        $posts = $tag->posts()
+                    ->where('published', true)
+                    ->with('tags')
+                    ->orderBy('publish_date', 'desc')
+                    ->get();
 
         return WinkPostResource::collection($posts);
     }
@@ -121,4 +126,20 @@ class PostController extends Controller
         return view('blog.post', $data);
     }
 
+    public function showAuthor($author_id)
+    {
+        $author_name = ucwords(str_replace('-', ' ', $author_id));
+
+        $data = [
+            'author_name'   => $author_name,
+            'author_slug'   => $author_id,
+        ];
+
+        return view('blog.author', $data);
+    }
+
+    public function showCategory($category)
+    {
+        return view('blog.category', ['category' => ucfirst($category)]);
+    }
 }

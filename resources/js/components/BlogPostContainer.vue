@@ -23,7 +23,7 @@
 <script>
 export default {
   props: {
-    containerType: 'posts',
+    containerType: String,
     containerArg: String
   },
   data() {
@@ -51,10 +51,10 @@ export default {
           url = '/api/posts';
           break;
         case 'author':
-          '/api/posts/author/' + containerArg;
+          '/api/posts/author/' + self.containerArg;
           break;
         case 'category':
-          url = '/api/posts/' + containerArg;
+          url = '/api/posts/' + self.containerArg.toLowerCase();
           break;
         default:
           // Display all posts by default

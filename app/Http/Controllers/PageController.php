@@ -15,17 +15,6 @@ class PageController extends Controller
         return view('blog.index');
     }
 
-    public function showAuthor($author_id)
-    {
-        // TODO: MIght be moved to post controller
-    }
-
-    public function showCategory($category)
-    {
-        // TODO: MIght be moved to post controller
-    }
-
-
     /// API Routes
 
     public function index()

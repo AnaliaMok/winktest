@@ -13481,7 +13481,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    containerType: 'posts',
+    containerType: String,
     containerArg: String
   },
   data: function data() {
@@ -13510,10 +13510,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             url = '/api/posts';
             break;
           case 'author':
-            '/api/posts/author/' + containerArg;
+            '/api/posts/author/' + self.containerArg;
             break;
           case 'category':
-            url = '/api/posts/' + containerArg;
+            url = '/api/posts/' + self.containerArg.toLowerCase();
             break;
           default:
             // Display all posts by default
@@ -13672,10 +13672,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     isFeatured: false,
     featuredImageCaption: String
   },
-  mounted: function mounted() {
-    console.log(this.post);
-  },
-
   computed: {
     imageCaption: function imageCaption() {
       var post = this.post;

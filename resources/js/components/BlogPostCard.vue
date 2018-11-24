@@ -29,9 +29,6 @@ export default {
     isFeatured: false,
     featuredImageCaption: String
   },
-  mounted() {
-    console.log(this.post);
-  },
   computed: {
     imageCaption: function(){
       let post = this.post;
