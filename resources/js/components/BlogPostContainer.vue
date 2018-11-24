@@ -16,6 +16,7 @@
         :is-featured="false"
         :post="post">
       </blog-post-card>
+      <!-- TODO: Implement load more button -->
     </section>
   </div>
 </template>
