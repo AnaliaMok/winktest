@@ -15,19 +15,14 @@ class PageController extends Controller
         return view('blog.index');
     }
 
-    public function showPost()
+    public function showAuthor($author_id)
     {
-        // TODO
+        // TODO: MIght be moved to post controller
     }
 
-    public function showAuthor()
+    public function showCategory($category)
     {
-        // TODO
-    }
-
-    public function showCategory()
-    {
-        // TODO
+        // TODO: MIght be moved to post controller
     }
 
 

@@ -79,4 +79,24 @@ class PostController extends Controller
         return WinkPostResource::make($post);
     }
 
+    /// Web Routes
+
+    /**
+     * Returns view for displaying single post
+     *
+     * @param String $slug - post slug
+     * @return View
+     */
+    public function showPost($slug)
+    {
+        $post = WinkPost::where('slug', $slug)->first();
+
+        if ($post === null)
+        {
+            abort(404);
+        }
+
+        return view('blog.post', ['post' => $post]);
+    }
+
 }
