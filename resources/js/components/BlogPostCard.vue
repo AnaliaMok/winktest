@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="blog__post__col blog__post__col--img">
+    <a :href="'/blog/' + post.slug" class="blog__post__col blog__post__col--img">
       <img :src="post.featured_image" :alt="imageCaption">
-    </div>
+    </a>
     <div class="blog__post__col blog__post__col--content">
       <strong v-if="isFeatured">FEATURED</strong>
       <h5><a :href="'/blog/' + post.slug">{{ post.title }}</a></h5>

@@ -10574,6 +10574,7 @@ main {
 }
 
 .blog__post__col--img {
+  display: block;
   position: relative;
   height: 0;
   overflow: hidden;
@@ -10586,6 +10587,7 @@ main {
   left: 0;
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .blog__post__col--content {
