@@ -16,5 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('blog', 'PageController@showBlog');
-Route::get('blog/author/{author_id}', 'PageController@author');
-Route::get('blog/category/{category}', 'PageController@category');
+Route::get('blog/{slug}', 'PageController@showPost');
+Route::get('blog/author/{author_id}', 'PageController@showAuthor');
+Route::get('blog/category/{category}', 'PageController@showCategory');

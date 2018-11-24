@@ -51,6 +51,7 @@ export default {
           url = '/api/posts';
           break;
         case 'author':
+          '/api/posts/author/' + containerArg;
           break;
         case 'category':
           url = '/api/posts/' + containerArg;

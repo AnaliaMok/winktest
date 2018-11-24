@@ -15,6 +15,21 @@ class PageController extends Controller
         return view('blog.index');
     }
 
+    public function showPost()
+    {
+        // TODO
+    }
+
+    public function showAuthor()
+    {
+        // TODO
+    }
+
+    public function showCategory()
+    {
+        // TODO
+    }
+
 
     /// API Routes
 

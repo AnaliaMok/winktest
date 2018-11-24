@@ -13567,6 +13567,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             url = '/api/posts';
             break;
           case 'author':
+            '/api/posts/author/' + containerArg;
             break;
           case 'category':
             url = '/api/posts/' + containerArg;
