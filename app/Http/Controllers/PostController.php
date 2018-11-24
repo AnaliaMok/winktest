@@ -8,6 +8,11 @@ use App\Http\Resources\WinkPost as WinkPostResource;
 
 class PostController extends Controller
 {
+    /**
+     * Retrieves all posts [limit of 10]
+     *
+     * @return Array
+     */
     public function index()
     {
         // TODO: Fix eager loading of select columns
@@ -20,6 +25,12 @@ class PostController extends Controller
         return WinkPostResource::collection($posts);
     }
 
+    /**
+     * Retrieves all posts related to a category
+     *
+     * @param String $category - category name
+     * @return Array
+     */
     public function category($category)
     {
         // Retrieve Wink Tag First
@@ -31,6 +42,31 @@ class PostController extends Controller
         return WinkPostResource::collection($posts);
     }
 
+    /**
+     * Retrieves all posts related to an author
+     *
+     * @param String $author_id - Author's slug
+     * @return Array
+     */
+    public function author($author_id)
+    {
+        $posts = WinkPost::with('tags')
+            ->whereHas('author', function($query) use ($author_id){
+                $query->where('slug', $author_id);
+            })
+            ->orderBy('published', true)
+            ->limit(10)
+            ->get();
+
+        return WinkPostResource::collection($posts);
+    }
+
+    /**
+     * Retrieves a single post by its slug
+     *
+     * @param String $slug
+     * @return Object
+     */
     public function show($slug)
     {
         $post = WinkPost::where('slug', $slug)->first();

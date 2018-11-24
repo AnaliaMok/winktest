@@ -22,6 +22,10 @@
 
 <script>
 export default {
+  props: {
+    containerType: 'posts',
+    containerArg: String
+  },
   data() {
     return {
       featuredPost: {},
@@ -34,8 +38,31 @@ export default {
   methods: {
     fetchPost: function(){
       var self = this;
+      let url = '/api/posts';
 
-      axios.get('/api/posts')
+      // Determine api route
+      // posts - All Posts
+      // author - Author Posts
+      // category - Category Posts
+      if(self.containerType !== undefined){
+
+        switch(self.containerType.toLowerCase()){
+          case 'posts':
+          url = '/api/posts';
+          break;
+        case 'author':
+          break;
+        case 'category':
+          url = '/api/posts/' + containerArg;
+          break;
+        default:
+          // Display all posts by default
+          url = '/api/posts';
+          break;
+        }
+      }
+
+      axios.get(url)
         .then(function(response){
           var data = response.data.data;
 

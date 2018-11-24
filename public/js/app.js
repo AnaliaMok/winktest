@@ -13537,6 +13537,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    containerType: 'posts',
+    containerArg: String
+  },
   data: function data() {
     return {
       featuredPost: {},
@@ -13550,8 +13554,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     fetchPost: function fetchPost() {
       var self = this;
+      var url = '/api/posts';
 
-      axios.get('/api/posts').then(function (response) {
+      // Determine api route
+      // posts - All Posts
+      // author - Author Posts
+      // category - Category Posts
+      if (self.containerType !== undefined) {
+
+        switch (self.containerType.toLowerCase()) {
+          case 'posts':
+            url = '/api/posts';
+            break;
+          case 'author':
+            break;
+          case 'category':
+            url = '/api/posts/' + containerArg;
+            break;
+          default:
+            // Display all posts by default
+            url = '/api/posts';
+            break;
+        }
+      }
+
+      axios.get(url).then(function (response) {
         var data = response.data.data;
 
         // Pull of latests
@@ -13706,8 +13733,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return months[month] + " " + day + ", " + year;
     },
     author: function author() {
-      if (this.post.author) {
-        return this.post.author.name.toLowerCase().replace(' ', '_');
+      if (this.post.author !== undefined && this.post.author.name !== undefined) {
+        return this.post.author.name.toLowerCase().replace(' ', '-');
       }
       return '';
     }
@@ -13759,7 +13786,7 @@ var render = function() {
           _vm._v(_vm._s(_vm.publishDate) + "\n        "),
           _vm.post.tags !== undefined && _vm.post.tags.length > 0
             ? _c("span", [
-                _vm._v("| \n          "),
+                _vm._v("|\n          "),
                 _c(
                   "a",
                   {

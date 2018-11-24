@@ -13,7 +13,7 @@
           </span>
         </p>
         <p class="blog__post__date">{{ publishDate }}
-          <span v-if="post.tags !== undefined && post.tags.length > 0">|&nbsp;
+          <span v-if="post.tags !== undefined && post.tags.length > 0">|
             <a :href="'/blog/category/' + post.tags[0].name">{{ post.tags[0].name }}</a>
           </span>
         </p>
@@ -80,8 +80,8 @@ export default {
       return `${months[month]} ${day}, ${year}`;
     },
     author: function(){
-      if(this.post.author){
-        return this.post.author.name.toLowerCase().replace(' ', '_')
+      if(this.post.author !== undefined && this.post.author.name !== undefined){
+        return this.post.author.name.toLowerCase().replace(' ', '-')
       }
       return '';
     }
