@@ -10519,6 +10519,14 @@ nav ul li {
   color: #FCFCFC;
 }
 
+nav ul li a {
+  color: #FCFCFC;
+}
+
+nav ul li a:hover {
+  color: #b0afaf;
+}
+
 main {
   margin-top: 5rem;
 }

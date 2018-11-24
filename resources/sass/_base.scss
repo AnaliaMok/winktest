@@ -29,13 +29,21 @@ nav {
     margin: 0;
     padding: 0;
 
-    li {
+    li{
       display: inline-block;
       padding: 1.5rem 1rem;
       font-family: $header-font;
       font-weight: 500;
       font-size: 1.1rem;
       color: $white;
+
+      a {
+        color: $white;
+
+        &:hover {
+          color: darken($white, 30%);
+        }
+      }
     }
   }
 }
