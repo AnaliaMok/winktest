@@ -89,7 +89,9 @@ class PostController extends Controller
      */
     public function showPost($slug)
     {
-        $post = WinkPost::where('slug', $slug)->first();
+        $post = WinkPost::where('slug', $slug)
+            ->with('author')
+            ->first();
 
         if ($post === null)
         {
