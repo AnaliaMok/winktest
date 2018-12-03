@@ -26,6 +26,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        // Telescope Pruning
+        // Retain records for only 24 hours
+        $schedule->command('telescope:prune')->daily();
     }
 
     /**
